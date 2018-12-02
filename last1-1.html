@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>2</title>
+
+	<link rel="stylesheet" type="text/css" href="normalize.css">
+    <script src="https://use.typekit.net/dcf1ame.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+    <link href="https://fonts.googleapis.com/css?family=Kirang+Haerang|Poiret+One|Rock+Salt|Shadows+Into+Light" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR" rel="stylesheet">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<style>
+body { margin:0; width: 100%; background: black; transition: all 0.7s;}
+
+#box {width: 160px; height: 120px; position: relative; float: left;}
+
+#boxes {width: 450px; position: absolute; left: 53.3%; top: 330px;}
+
+#whiteline{width: 670px; height: 96%; position: absolute; left: 4%; top: 15px; opacity: 0.3;}
+#whiteline2{width: 670px; height: 96%; position: absolute; left: 53%; top: 15px; opacity: 0.3;}
+
+#park {width: 570px; position: relative; float: left; margin-top: 10px; margin-left: 120px;}
+
+#go {width: 35px; position: absolute; left: 49.3%; display: inline;}
+#go_1 {width: 35px; position: absolute; left: 49.3%; display: none;}
+#go1 {width: 35px; position: absolute; left: 49.3%; bottom: 18px; display: inline;}
+#go2 {width: 35px; position: absolute; left: 49.3%; bottom: 18px; display: none;}
+
+/*#category {width: 120px; position: relative; float: left; margin: 30px 30px;}*/
+
+#drag{width: 370px; position: absolute; top: -50px; left: -50px; opacity: 1; display: inline;}
+#drag:hover{opacity: 0.7;}
+
+#float {position: relative; float: left;}
+
+#popup {position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; width: 20%; margin: 30% auto; background: white; display: none;}
+#popup img{width: 20%; background: white; display: none;}
+
+#popupgeul {position: absolute; top:30px; left:0px; bottom: 0px; right: 0px; width: 20%; margin: 30% auto; display: none; color: white; background: red;}
+
+*h1,h3,p{font-family: 'Nanum Myeongjo', serif;}
+	h2{font-family: 'Permanent Marker', cursive;}
+
+	h2{font-size: 4.1em; font-weight: 400; line-height: 1.2; text-align: left; color: black;}
+	h2:hover {color: #af0808; -webkit-text-stroke: 2px #af0808; /*background-color: white; text-shadow: 3px 3px 2px black; box-shadow:6px 6px 1px purple; */}
+
+
+</style>
+</head>
+
+<body>
+	<img src="./last/whiteline.png" id="whiteline">
+	<img src="./last/whiteline.png" id="whiteline2">
+
+	<a href="last1.html"><img src="./last/go.png" id="go" 
+	style="top: 18px; transform: rotate(180deg);" 
+	onMouseOver="this.src='./last/go1.png'"
+	onMouseOut="this.src='./last/go.png'"> </a>
+	<img src="./last/go.png" id="go_1" 
+	style="top: 18px; transform: rotate(180deg);" 
+	onMouseOver="this.src='./last/go1.png'"
+	onMouseOut="this.src='./last/go.png'">
+
+	<img src="./last/go.png" id="go1" 
+	onMouseOver="this.src='./last/go1.png'"
+	onMouseOut="this.src='./last/go.png'">
+
+	<img src="./last/go.png" id="go2" 
+	onMouseOver="this.src='./last/go1.png'"
+	onMouseOut="this.src='./last/go.png'">
+
+	<img src="./last/boxes.png" id="boxes">
+
+	<img src="./last/park.png" id="park">
+
+	<div id="box" style="width: 440px; margin-left: 140px; top: -40px; -webkit-text-stroke: 1px white;"><h2> whose<br>fingerprint<br>is this?</h2></div>
+
+	<div class="drag"><img src="./last/face1.png" id="drag" style="position: absolute; top: 20px; left: 130px;"></div>
+	<div class="drag"><img src="./last/face2.png" id="drag" style="position: absolute; top: 180px; left: 350px;"></div>
+	<div class="drag"><img src="./last/face3.png" id="drag" style="position: absolute; top: 430px; left: 80px;"></div>
+
+	<script type="text/javascript">
+	(function(){
+		var d = false;
+		var target,dx,dy;
+		var t = document.getElementsByClassName("drag");
+		for(var i=0; i<t.length; i++){
+			t[i].style.display = "block";
+			t[i].style.position = "absolute";
+			t[i].style.cursor = "pointer";
+			t[i].ondragstart = function(e){e.preventDefault();};
+			t[i].onmousedown = function(e){ d = true; dx = e.offsetX; dy = e.offsetY; target = e.target;}
+			t[i].onmouseup = function(){ d = false;}
+			window.onmousemove = function(e){ 
+				if(d){ target.style.left = (e.clientX - dx) + "px";
+					target.style.top = (e.clientY - dy) + "px";}
+			}
+		}
+	})();
+
+	//카테고리 온클릭이벤트
+	var toggle = "off"
+		go1.onclick = function(){
+			if(toggle == "off"){
+				go1.setAttribute("src","./go1.png");
+				toggle = "on"
+				document.body.style.background = "rgb(175,8,8)";
+				/*rgb(222,205,165)*/
+
+				box.style.display= "none";
+				boxes.style.display= "none";
+				go1.style.display = "none";
+				go.style.display = "none";
+				go_1.style.display = "inline";
+				}
+			}
+
+	var toggle = "off"
+	
+			go_1.onclick = function(){
+			if(toggle == "off"){
+				go_1.setAttribute("src","./go.png");
+				toggle = "on"
+				document.body.style.background = "black";
+				/*rgb(222,205,165)*/
+
+				box.style.display= "inline";
+				boxes.style.display= "inline";
+				go1.style.display = "inline";
+				go.style.display = "inline";
+				go_1.style.display = "none";
+				}
+			}
+
+			go.onclick = function(){
+			if(toggle == "off"){
+				go1.setAttribute("src","./go.png");
+				toggle = "on"
+				document.body.style.background = "black";
+				/*rgb(222,205,165)*/
+
+				box.style.display= "none";
+				boxes.style.display= "none";
+				}
+			}
+
+
+	
+	</script>
+
+	<div id="popup">
+		<div id="popupgeul " style="background: white;">
+			<img src="./last/popup.png" id="">fpfhffpfhf
+		</div>
+	</div>
+
+</body>
+</html>
